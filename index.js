@@ -27,16 +27,29 @@ discord_client.on('message', message => {
   // Early exit for non-prefix or bot-authored commands
   if (!message.content.startsWith('!') || message.author.bot) return;
   
-  if (message.content === '!Thor') {
+  if (message.content.toLowerCase() === '!thor') {
 	  // send back "God of Thunder" to the channel the message was sent in
 	  message.channel.send('God of Thunder');
-  }
-  if (message.content === '!ThreadDay') {
+  } else if (message.content.toLowerCase() === '!threadday') {
     redis_client.get("superthread_day", function(err, reply) {
       message.channel.send(reply);
     });
+  } else if (message.startsWith.toLowerCase() === '!birthday') {
+    const taggedUser = message.mentions.users.first();
+    var user = parseUser(taggedUser.id);
+    redis_client.get(user + "_bday", function(err, reply) {
+      message.channel.send(reply);
+    });
+  } else if (message.content.toLowerCase() === '!snowflake') {
+    message.channel.send(message.mentions.users.first().id)
   }
 });
 
 // login to Discord with your app's token
 discord_client.login(process.env.TOKEN);
+
+function parseUser(user_id) {
+  redis_client.get(user_id, function(err, reply) {
+    return reply;
+  });
+}
