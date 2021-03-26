@@ -43,9 +43,12 @@ discord_client.on('message', message => {
   } else if (command === 'birthday') {
     const taggedUser = message.mentions.users.first();
     var user = parseUser(taggedUser.id);
-    redis_client.get(user + '_bday', function(err, reply) {
-      message.channel.send(reply);
-    });
+    console.log(`ID=${taggedUser.id}`);
+    console.log(`user=${user}`);
+    redis_client.get(`${user}_bday`, (err, reply) => {
+        if (!err)
+          message.channel.send(reply);
+      });
   } else if (command === 'snowflake') {
     message.channel.send(message.mentions.users.first().id)
   }
