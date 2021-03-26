@@ -40,7 +40,7 @@ discord_client.on('message', message => {
     redis_client.get(user + "_bday", function(err, reply) {
       message.channel.send(reply);
     });
-  } else if (message.content.toLowerCase() === '!snowflake') {
+  } else if (message.startsWith.toLowerCase() === '!snowflake') {
     message.channel.send(message.mentions.users.first().id)
   }
 });
