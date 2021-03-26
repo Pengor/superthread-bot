@@ -8,7 +8,7 @@
 const redis = require('redis');
 const redis_client = redis.createClient(process.env.REDISCLOUD_URL, {no_ready_check: true});
 
-redis_client.on("error", function(error) {
+redis_client.on('error', function(error) {
   console.error(error);
 });
 
@@ -22,25 +22,31 @@ discord_client.once('ready', () => {
   console.log('Ready!');
 });
 
+// Set command prefix character
+const prefix = '!';
+
 // Listen for messages
 discord_client.on('message', message => {
   // Early exit for non-prefix or bot-authored commands
   if (!message.content.startsWith('!') || message.author.bot) return;
   
-  if (message.content.toLowerCase() === '!thor') {
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const command = args.shift().toLowerCase();
+
+  if (command === 'thor') {
 	  // send back "God of Thunder" to the channel the message was sent in
 	  message.channel.send('God of Thunder');
-  } else if (message.content.toLowerCase() === '!threadday') {
-    redis_client.get("superthread_day", function(err, reply) {
+  } else if (command === 'threadday') {
+    redis_client.get('superthread_day', function(err, reply) {
       message.channel.send(reply);
     });
-  } else if (message.startsWith.toLowerCase() === '!birthday') {
+  } else if (command === 'birthday') {
     const taggedUser = message.mentions.users.first();
     var user = parseUser(taggedUser.id);
-    redis_client.get(user + "_bday", function(err, reply) {
+    redis_client.get(user + '_bday', function(err, reply) {
       message.channel.send(reply);
     });
-  } else if (message.startsWith.toLowerCase() === '!snowflake') {
+  } else if (command === 'snowflake') {
     message.channel.send(message.mentions.users.first().id)
   }
 });
