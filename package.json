@@ -1,0 +1,26 @@
+{
+  "name": "superthread-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot for chatting with friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pengor/superthread-bot.git"
+  },
+  "keywords": [
+    "Discord",
+    "bot"
+  ],
+  "author": "Drew M. Johnson <drew@drewmjohnson.com> (http://drewmjohnson.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Pengor/superthread-bot/issues"
+  },
+  "homepage": "https://github.com/Pengor/superthread-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
