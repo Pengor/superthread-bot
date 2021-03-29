@@ -45,7 +45,7 @@ discord_client.on('message', message => {
 
   // Ensure only valid commands are executed
   if (!discord_client.commands.has(command_name)) return;
-  const command = discord_client.commands.get(commandName);
+  const command = discord_client.commands.get(command_name);
 
   // Execute the matching command
   try {
