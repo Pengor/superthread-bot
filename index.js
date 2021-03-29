@@ -44,8 +44,8 @@ discord_client.on('message', message => {
 	const command_name = args.shift().toLowerCase();
 
   // Ensure only valid commands are executed
-  if (!client.commands.has(command_name)) return;
-  const command = client.commands.get(commandName);
+  if (!discord_client.commands.has(command_name)) return;
+  const command = discord_client.commands.get(commandName);
 
   // Execute the matching command
   try {
